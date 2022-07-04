@@ -1,0 +1,71 @@
+{
+  "name": "Timer",
+  "version": "0.1.0",
+  "description": "Timer application build with Electron",
+  "author": {
+    "name": "Hryhorii Hlushko",
+    "email": "escagt82@gmail.com"
+  },
+  "homepage": "https://github.com/EscaG/electron-timetracker",
+  "repositiry": "https://github.com/EscaG/electron-timetracker",
+  "repository": {},
+  "license": "ISC",
+  "scripts": {
+    "start": "bozon start",
+    "reload": "bozon start --reload",
+    "inspect": "bozon start --inspect=5858",
+    "inspect:brk": "bozon start --inspect-brk 5858",
+    "package": "bozon package windows"
+  },
+  "build": {
+    "appId": "com.electron.timer",
+    "copyright": "Copyright 2022 Hryhorii Hlushko",
+    "win": {
+      "publish": [
+        "github",
+        "bitbucket"
+      ],
+      "target": "nsis",
+      "icon": "resources/favicon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "uninstallDisplayName": "Windows Utilities Uninstaller",
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": "false",
+      "installerIcon": "resources/favicon.ico",
+      "uninstallerIcon": "resources/favicon.ico"
+    },
+    "mac": {
+      "category": "public.app-category.productivity"
+    },
+    "linux": {
+      "category": "Utility",
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    }
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "classnames": "^2.3.1",
+    "luxon": "^2.4.0",
+    "nanoid": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^8.2.5",
+    "bozon": "1.3.3",
+    "jest": "28.1.2",
+    "nodemon": "^2.0.18",
+    "react-svg-loader": "^3.0.3",
+    "spectron": "19.0.0",
+    "webpack": "^5.73.0"
+  }
+}
