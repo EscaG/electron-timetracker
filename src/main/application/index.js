@@ -1,4 +1,4 @@
-import {app, BrowserWindow, ipcMain} from 'electron';
+import {app, BrowserWindow, ipcMain, Menu} from 'electron';
 import path from 'path';
 import {Storage} from './storage';
 import {Timer} from "./timer";
@@ -18,6 +18,7 @@ export default class TimerApp {
 
 
 	createWindow () {
+		let mainMenu = Menu.buildFromTemplate([{role:'about'}])
 		this.window = new BrowserWindow({
 			title: CONFIG.name,
 			width: CONFIG.width,
@@ -26,7 +27,7 @@ export default class TimerApp {
 			minHeight: CONFIG.height,
 			maxWidth: CONFIG.width,
 			maxHeight: CONFIG.height,
-			titleBarStyle: 'hidden',
+			// titleBarStyle: 'hidden',
 			titleBarOverlay: {
 				color: '#3498db'
 			},
@@ -47,6 +48,7 @@ export default class TimerApp {
 		}
 		this.window.on('ready-to-show', () => {
 			this.window.show();
+			Menu.setApplicationMenu(mainMenu)
 		})
 		this.window.webContents.on('did-finish-load', () => {
 			this.window.webContents.send('entries',
@@ -60,7 +62,7 @@ export default class TimerApp {
 			this.timer.onChange = null
 			this.window = null
 		})
-		this.window.webContents.openDevTools({mode: 'detach'})
+		// this.window.webContents.openDevTools({mode: 'detach'})
 
 	}
 

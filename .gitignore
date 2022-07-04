@@ -5,3 +5,4 @@ builds
 packages
 bower_components
 private
+yarn-error.log

@@ -1,32 +1,31 @@
 {
   "name": "Timer",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Timer application build with Electron",
   "author": {
     "name": "Hryhorii Hlushko",
     "email": "escagt82@gmail.com"
   },
   "homepage": "https://github.com/EscaG/electron-timetracker",
-  "repositiry": "https://github.com/EscaG/electron-timetracker",
-  "repository": {},
-  "license": "ISC",
+  "repository": "https://github.com/EscaG/electron-timetracker",
+  "license": "MIT",
   "scripts": {
     "start": "bozon start",
     "reload": "bozon start --reload",
     "inspect": "bozon start --inspect=5858",
     "inspect:brk": "bozon start --inspect-brk 5858",
-    "package": "bozon package windows"
+    "package": "bozon package windows",
+    "publish": "bozon package windows --publish"
   },
   "build": {
     "appId": "com.electron.timer",
     "copyright": "Copyright 2022 Hryhorii Hlushko",
+    "publish": [
+      "github"
+    ],
     "win": {
-      "publish": [
-        "github",
-        "bitbucket"
-      ],
-      "target": "nsis",
-      "icon": "resources/favicon.ico"
+      "icon": "resources/favicon.ico",
+      "target": "nsis"
     },
     "nsis": {
       "oneClick": false,
@@ -51,6 +50,8 @@
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "classnames": "^2.3.1",
+    "electron-log": "^4.4.8",
+    "electron-updater": "^5.0.5",
     "luxon": "^2.4.0",
     "nanoid": "^4.0.0",
     "react": "^18.2.0",
