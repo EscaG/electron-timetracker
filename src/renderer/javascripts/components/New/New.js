@@ -48,7 +48,7 @@ export const New = ({time: defaultTime, title: defaultTitle}) => {
 				setTitle={setTitle}
 			/>
 			<Actions
-				disabled={title === ''}
+				disabled={!title}
 				duration={time || 0}
 				running={running}
 				onStartTimer={handleStartTimer}

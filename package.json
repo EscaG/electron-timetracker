@@ -1,6 +1,6 @@
 {
   "name": "Timer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Timer application build with Electron",
   "author": {
     "name": "Hryhorii Hlushko",
