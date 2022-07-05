@@ -1,13 +1,13 @@
-import {app, BrowserWindow, ipcMain, Menu} from 'electron';
+import { app, BrowserWindow, ipcMain, Menu } from 'electron';
 import path from 'path';
-import {Storage} from './storage';
-import {Timer} from "./timer";
-import {nanoid} from "nanoid";
-import {DateTime} from "luxon";
+import { Storage } from './storage';
+import { Timer } from "./timer";
+import { nanoid } from "nanoid";
+import { DateTime } from "luxon";
 
 
 export default class TimerApp {
-	constructor () {
+	constructor() {
 		this.timer = new Timer()
 		this.storage = new Storage()
 		this.entry = {};
@@ -17,8 +17,8 @@ export default class TimerApp {
 	}
 
 
-	createWindow () {
-		let mainMenu = Menu.buildFromTemplate([{role:'about'}])
+	createWindow() {
+		let mainMenu = Menu.buildFromTemplate([{ role: 'about' }])
 		this.window = new BrowserWindow({
 			title: CONFIG.name,
 			width: CONFIG.width,
@@ -33,7 +33,7 @@ export default class TimerApp {
 			},
 			resizable: false,
 			show: false,
-			icon: __dirname + '../../../resources/pulse.png',
+			icon: __dirname + '../../../resources/timer.png',
 			webPreferences: {
 				// contextIsolation: false,
 				// nodeIntegration: true,
@@ -44,7 +44,7 @@ export default class TimerApp {
 		this.window.loadFile('renderer/index.html');
 
 		this.timer.onChange = () => {
-			this.window.webContents.send('tick', {time: this.timer.get()})
+			this.window.webContents.send('tick', { time: this.timer.get() })
 		}
 		this.window.on('ready-to-show', () => {
 			this.window.show();
@@ -66,7 +66,7 @@ export default class TimerApp {
 
 	}
 
-	subscribeForAppEvents () {
+	subscribeForAppEvents() {
 		app.on('window-all-closed', () => {
 			if (process.platform !== 'darwin') {
 				app.quit()
@@ -80,7 +80,7 @@ export default class TimerApp {
 		})
 	}
 
-	subscribeForIPC () {
+	subscribeForIPC() {
 		ipcMain.on('timer:start', (_, data) => {
 			this.timer.start()
 			this.entry = {
@@ -96,19 +96,13 @@ export default class TimerApp {
 			this.entry.duration = duration;
 			this.saveEntry()
 		})
-		// ipcMain.on('save', (_, entry) => {
-		// 	const entries = this.storage.get('entries') || []
-		// 	entries.push(entry)
-		// 	this.storage.set('entries', entries)
-		// 	this.window.webContents.send('entries', {entries})
-		// })
 	}
 
-	saveEntry () {
+	saveEntry() {
 		const entries = this.storage.get('entries') || []
 		entries.push(this.entry)
 		this.storage.set('entries', entries)
-		this.window.webContents.send('entries', {entries})
+		this.window.webContents.send('entries', { entries })
 		this.entry = {}
 	}
 
