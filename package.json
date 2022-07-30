@@ -6,7 +6,6 @@
 		"name": "Hryhorii Hlushko",
 		"email": "escagt82@gmail.com"
 	},
-	"homepage": "https://github.com/EscaG/electron-timetracker",
 	"repository": "https://github.com/EscaG/electron-timetracker",
 	"license": "MIT",
 	"scripts": {
